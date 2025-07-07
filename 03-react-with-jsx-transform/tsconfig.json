@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "strict": true,
+        "module": "esnext",
+        "removeComments": true,
+        "skipLibCheck": true,  //노드 모듈같은거 체크 안하게 성능 높여줌
+        "jsx": "react"
+    }
+}
