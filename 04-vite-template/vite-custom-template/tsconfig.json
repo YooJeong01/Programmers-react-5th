@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "baseUrl": ".",
+        "paths": {
+            "@/*" : ["src/*"]
+        },
+        "jsx": "react-jsx", // ts가 여기서 JSX를 인식함
+        "moduleResolution": "node" // ts 자체가 node module처럼 읽을수있게함
+    }
+}
