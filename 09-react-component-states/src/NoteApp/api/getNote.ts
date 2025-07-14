@@ -3,7 +3,7 @@ import notesData from '@/data/notes.json'
 import usersData from '@/data/users.json'
 
 export type Note = (typeof notesData)[number] & {
-    expend?:{
+    expand?:{
         user: typeof usersData[number]
     }
 }
@@ -16,7 +16,7 @@ export function getNoteList():Note[]{
         if(user){
             // expend라는 키에 user 객체를 담는거다
             // 컴파운드 컴포넌트?
-            (note as Note).expend = {user}
+            (note as Note).expand = {user}
         }
         return note;
     })
