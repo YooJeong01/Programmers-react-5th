@@ -1,24 +1,15 @@
-import { createContext, useState } from "react"
+import { useState } from "react"
 import Parent from "./Parent"
+import { UserContext } from "./UserContext";
 
-
-
-interface UserContextType {
-  username : string;
-}
-
-export const UserContext = createContext<UserContextType | null>(null);
 
 
 function App() {
   const [username, setUsername] = useState('심선범');
 
-  console.log(UserContext)
-
-
 
   return (
-    <UserContext value={{username}}>
+    <UserContext value={{username, setUsername}}>
       <div style={{
         border:'1px solid gray',
         padding:'10px'

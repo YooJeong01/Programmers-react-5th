@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { UserContext } from "./App";
+import { useUserContext } from "@/hook/useUserContext";
 
 function GrandChild() {
 
-  const {username} = useContext(UserContext);
+  const {username,setUsername} = useUserContext()
 
   return (
     <div style={{
@@ -11,7 +10,13 @@ function GrandChild() {
       padding:'10px'
     }}>
       <h4>바뀐다333333333</h4>
-      <p>안녕하세요 {username} 님!</p>
+      <p>안녕하세요 {username} 님!</p> 
+      <button 
+        type="button" 
+        onClick={()=>{
+          setUsername('황유정')
+        }
+      }> 사용자 변경 </button>
     </div>
   )
 }
