@@ -1,0 +1,10 @@
+
+.container{
+    flex: 1;
+    padding: 2rme;
+
+    h1{
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+}
