@@ -1,0 +1,122 @@
+/* 탤윈드를 전체로 사용해도 되고 */
+/* @import "tailwindcss"; */
+
+/* 탤윈드를 뽑아서 사용할수도 있다 */
+
+@layer theme, base, components, utilities;
+
+/* layer(namespace 가져온 그룹들이 불릴 명칭) */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+/* utilities.css에 있는 모든걸 가져와서 utilities에 담고 우선순위를 1로 두겠다 */
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/*
+theme : 디자인 시스템(디자인 토큰)
+프로젝트 전반에 사용될 디자인 토큰(색상, 간격, 그라이데이션, 브레이크 포인트) CSS 커스텀 프로퍼티로 한 번에 선언
+*/
+
+/* 
+  디자인 토큰 설정
+ 커스텀 옵션을 설정해줄수있다
+ 여기서 설정한 변수들은 여러 곳에서 활용이 가능하다
+ 
+*/
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+  /* --breakpoint-sm: 500px; */
+  /* --spacing-sm: 1rem;
+  --spacing-m: 2rem;
+  --spacing-l: 3rem; */
+
+
+
+}
+
+
+
+
+/*
+base : reset.css 같은거
+base에서 정의한 값은 utilities 값보다 약하므로 덮어쓰기 됨
+*/
+
+@layer base {
+
+  a{
+    color: var(--color-blue-500);
+    text-decoration: underline;
+  }
+
+  h1{
+    font-size: var(--text-2xl);
+  }
+
+  h2{
+    font-size: var(--text-xl);
+  }
+
+  h3{
+    font-size: var(--text-lg);
+  }
+}
+
+
+
+
+
+/*
+utilities : Tailwind V4의 기능 : 단일 목적의 유틸리티를 정의하는 문법
+
+하나 정의해두고 불러와야할 곳이 많은 경우 유틸리티 함수처럼 사용되는 클래스
+재사용이 많이 될 것 같은 단일 css 속성을 정의
+
+*/
+
+/* 클래스 명 설정 */
+@utility highlight{
+  background-color: red;
+  font-size: 2rem;
+  color: white;
+  padding: 1rem;
+
+
+
+}
+
+
+/*
+
+여러 속성을 묶는 재사용 컴포넌트 클래스 정의
+
+*/
+
+/* pure css style */
+@layer components{
+  .card{
+    color: orange;
+    background-color: dodgerblue;
+
+    h2{
+      font-size: 2rem;
+    }
+  }
+
+}
+
+
+/* Tailwind style */
+@layer components{
+  ._card{
+    @apply rounded-xl bg-mint-500 text-white;
+    h2{
+      @apply text-xl font-semibold
+    }
+  }
+}
+
+
+body{
+  background-color: rgb(62, 62, 95);
+}
+
