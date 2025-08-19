@@ -1,0 +1,61 @@
+
+/*
+[ 오류 ]
+
+tailwind의 변수는 런타임에 브라우저가 해석함
+그래서 .module.css는 사용 시점이 애매하다 (왜냐? .module.css는 vite가 나중에 build할때 만들기 때문에)
+일반 css는 상관 없음
+
+@apply text-red-500 파일은 자신의 파일 안에 @theme가 없다고 간주함
+전역 파일에만 정의되어 있어서 Tailwind가 인식하지 못함
+
+
+
+[ 해결 방법 ]
+
+sol1. 파일 모듈 상단에 css 불러오기
+@import 'tailwindcss/theme.css' layer(theme);
+@import '@/styles/_theme.css';
+
+sol2. css 변수안에 tailwind 넣기
+color:var(--color-accent);
+border-radius: var(--spacing-sm);
+
+
+[ module과 tailwind를 같이 쓰고싶다면? ]
+ 왜 쓰게 됐는지 상황 설명하면 강점이 될 수 있다
+
+
+*/
+
+/* tailwind가 인식하지 못하는 에러를 방지하기위해 직접 import 해주기 */
+@import 'tailwindcss/theme.css' layer(theme);
+@import '@/styles/_theme.css';
+
+
+.component{
+  @apply inline-flex items-center border border-accent;
+  /* color:var(--color-accent); */
+  /* border-radius: var(--spacing-sm); */
+}
+
+
+.component .output{
+  @apply select-none text-sm font-light text-center text-accent;
+  inline-size: 2rem;
+}
+
+.component .group{
+  @apply inline-flex items-center;
+  flex-flow:column;
+}
+
+.component .button{
+  @apply select-none text-[#999] text-xs bg-transparent opacity-75 p-0 border-0;
+  block-size: 14px;
+  inline-size: 14px;
+}
+
+.component .button:hover:not(:disabled){
+  @apply opacity-100 bg-[#ededed] text-accent
+}
